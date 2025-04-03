@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: rgb(0, 0, 0);
+            color: gray;
+            font-family: Arial, sans-serif;
+        }
+
+        label, input, textarea {
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            color: lightblue;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: deepskyblue;
+        }
+    </style>
+    <title>Formulário para dúvidas</title>
+</head>
+<body>
+    <h1>Envie suas dúvidas</h1>
+    <form id="meuFormulario">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+
+        <label for="telefone">Telefone:</label>
+        <input type="tel" id="telefone" name="telefone" required><br>
+
+        <label for="mensagem">Mensagem:</label>
+        <textarea id="mensagem" name="mensagem" required></textarea><br>
+
+        <label for="foto">Carregar Foto:</label>
+        <input type="file" id="foto" name="foto"><br>
+
+        <input type="submit" value="Enviar">
+        <a href="./index.html">Voltar</a>
+    </form>
+
+    <script>
+        // script.js
+
+        // Aguardando que o conteúdo da página esteja carregado
+        document.addEventListener("DOMContentLoaded", function() {
+            // Selecionando o formulário pelo ID
+            const formulario = document.getElementById("meuFormulario");
+
+            // Adicionando o evento de envio do formulário
+            formulario.addEventListener("submit", function(event) {
+                // Impedindo o envio do formulário para validar os dados antes
+                event.preventDefault();
+
+                // Pegando os valores dos campos
+                const nome = document.getElementById("nome").value;
+                const email = document.getElementById("email").value;
+                const telefone = document.getElementById("telefone").value;
+                const mensagem = document.getElementById("mensagem").value;
+                const foto = document.getElementById("foto").files[0];
+
+                // Verificando se todos os campos obrigatórios estão preenchidos
+                if (nome && email && telefone && mensagem) {
+                    // Se todos os campos obrigatórios foram preenchidos, exibe uma mensagem de sucesso
+                    alert("Formulário enviado com sucesso!");
+
+                    // Opcional: Limpar o formulário após o envio bem-sucedido
+                    formulario.reset();
+                } else {
+                    // Se algum campo obrigatório estiver vazio, exibe uma mensagem de erro
+                    alert("Por favor, preencha todos os campos obrigatórios.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
